@@ -44,6 +44,7 @@ public class ShuffleKeys extends Configured implements Tool {
     private long count=0;
     private boolean skip=false;
     private Random rand = new Random();
+    private Random randkey = new Random();
     public static enum Counters {
       ROWS, 
       SHUFFLED_ROWS
@@ -67,7 +68,7 @@ public class ShuffleKeys extends Configured implements Tool {
     
       public void map(ImmutableBytesWritable row, LongWritable value, Context context)
           throws IOException, InterruptedException {
-         
+        context.getCounter(Counters.ROWS).increment(1);        
         if (sp>0){ //skip by percentage
           if(rand.nextInt(100) > sp){
               skip=true;
@@ -83,10 +84,9 @@ public class ShuffleKeys extends Configured implements Tool {
         }
             
         if (!skip){
-          key.set(rand.nextLong());
-          context.write(key, row);
-          
-          context.getCounter(Counters.ROWS).increment(1);
+          key.set(randkey.nextLong());
+          context.write(key, row);        
+          context.getCounter(Counters.SHUFFLED_ROWS).increment(1);     
         }
         
         skip=false;
