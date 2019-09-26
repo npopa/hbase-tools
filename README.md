@@ -69,7 +69,7 @@ export ROWKEYS_SAMPLE=/tmp/${ST_PREFIX}_keys_sample
 export SCAN=/tmp/${ST_PREFIX}_scan
 export BULKLOAD=/tmp/${DT_PREFIX}_bulkload
 
-export JAR=/root/tera-stuff/target/tera-stuff.jar
+export JAR=/root/hbase-tools/target/hbase-tools.jar
 export CLASSPATH=`hadoop classpath`:`hbase mapredcp`:/etc/hbase/conf:$JAR
 export HADOOP_CLASSPATH=${CLASSPATH}
 ```
