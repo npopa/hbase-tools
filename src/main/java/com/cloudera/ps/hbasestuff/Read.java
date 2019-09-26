@@ -119,7 +119,6 @@ public class Read extends Configured implements Tool {
 		job.setInputFormatClass(SequenceFileInputFormat.class);
 		FileInputFormat.addInputPath(job, inputDir);
 		FileOutputFormat.setOutputPath(job, outputDir);
-		job.setJobName("Read");
 		job.setJarByClass(Read.class);
 		job.setMapperClass(ReadMapper.class);
 		job.setNumReduceTasks(0);
