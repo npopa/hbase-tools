@@ -102,7 +102,7 @@ public class Read extends Configured implements Tool {
 		conf.setStrings("io.serializations",
 				new String[] { conf.get("io.serializations"), ResultSerialization.class.getName() });
 	    conf.set("Read.tableName", tableName);
-	    Job job = Job.getInstance(conf, "Read data for keys " + keysPath + " from " + tableName + " to " + outputPath);
+	    Job job = Job.getInstance(conf, "Read keys " + keysPath + " from " + tableName + " to " + outputPath);
         TableMapReduceUtil.addDependencyJars(job);
 
         // security stuff
